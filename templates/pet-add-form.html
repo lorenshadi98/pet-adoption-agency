@@ -1,0 +1,40 @@
+<!-- prettier-ignore -->
+{% extends "base.html" %} 
+{%block title %}Add pet{% endblock %}
+<!-- prettier-ignore -->
+{%block content %}
+<div class="container">
+  <h1 class="display-1 text-center">Add new Pet</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <form id="pet-add-form" method="POST">
+        <!-- prettier-ignore -->
+        {{ form.hidden_tag() }}
+        <!--add type=hidden form fields -->
+        <!-- prettier-ignore -->
+        {% for field in form
+                     if field.widget.input_type != 'hidden' %}
+        <!-- prettier-ignore -->
+        <div class="form-group">
+            {{ field.label (class_=" my-3")}} :
+            {{ field (class_="form-control") }}
+                
+            {% for error in field.errors %}
+                <small class="form-text text-danger">
+                    {{ error }}
+                </small>             
+            {% endfor %}
+        <!-- prettier-ignore -->
+        </div>
+        {% endfor %}
+
+        <button class="btn btn-outline-success my-3" type="submit">
+          Submit
+        </button>
+      </form>
+      <a href="/" class="btn btn-outline-danger my-3"> Back </a>
+    </div>
+  </div>
+</div>
+<!-- prettier-ignore -->
+{% endblock %}

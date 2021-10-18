@@ -1,0 +1,35 @@
+<!-- prettier-ignore -->
+{% extends "base.html" %} 
+{%block title %}Pet Homepage{% endblock %}
+<!-- prettier-ignore -->
+{%block content %}
+<div class="row content-align-center">
+  <h1 class="display-1 text-center">Our Pets</h1>
+  {%for pet in pets %}
+  <div class="card m-2" style="width: 18rem">
+    <img class="card-img-top" src="{{pet.photo_url}}" alt="Pet image" />
+    <div class="card-body">
+      <h5 class="card-title">{{pet.name}}</h5>
+      <p class="card-text">
+        Hello! I am {{pet.name}}. I am {{pet.age}} years old. I am a
+        {{pet.species}}.
+        <li>NOTES: {{pet.notes}}</li>
+
+        <!-- prettier-ignore -->
+        {% if pet.available %}
+        <small class="font-weight-bold text-success">Available</small>
+        {%else%}
+        <small class="font-weight-bold text-danger">Adopted</small>
+        {%endif%}
+      </p>
+      <a href="/{{pet.id}}" class="btn btn-outline-primary">Edit my info</a>
+    </div>
+  </div>
+  {%endfor %}
+
+  <div class="col-md-8 text-center">
+    <a href="/new" class="btn btn-primary btn-lg m-3"> Add Pet </a>
+  </div>
+</div>
+<!-- prettier-ignore -->
+{% endblock %}
